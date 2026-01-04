@@ -485,7 +485,43 @@ void SnakeGame::resetGame() {
     buffGhostTime = 0.0;
     items.clear();
     initMap(currentMap);
-    int startX = GRID_W / 2, startY = GRID_H / 2;
+
+    int startX, startY;
+    bool valid = false;
+    int margin = 3; // 距离边缘至少保留3格缓冲
+
+    while (!valid) {
+        // 在安全范围内随机生成 (确保 startX-1 也在范围内)
+        // 范围: [margin + 1, GRID_W - margin]
+        startX = rand() % (GRID_W - 2 * margin) + margin + 1;
+        startY = rand() % (GRID_H - 2 * margin) + margin;
+
+        valid = true;
+
+        // 检查蛇头和蛇身(初始向左延伸一格)是否碰到墙壁
+        Point head = { startX, startY };
+        Point body = { startX - 1, startY };
+
+        // 检查墙壁碰撞
+        for (auto& w : walls) {
+            if (head == w || body == w) {
+                valid = false;
+                break;
+            }
+        }
+
+        // 额外检查：确保蛇头前方(右侧)不是墙，避免一开局就撞
+        if (valid) {
+            Point front = { startX + 1, startY };
+            for (auto& w : walls) {
+                if (front == w) {
+                    valid = false;
+                    break;
+                }
+            }
+        }
+    }
+
     snake.clear();
     snake.push_back({ startX, startY });
     snake.push_back({ startX - 1, startY });
