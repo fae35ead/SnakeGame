@@ -24,7 +24,7 @@
 
 * **IDE**: Visual Studio 2022
 * **语言标准**: C++17
-* **依赖库**: [EasyX Graphics Library](https://easyx.cn/) (请确保在 VS 中安装了 EasyX)
+* **依赖库**: [EasyX Graphics Library](https://easyx.cn/) 
 
 ## 🎮 操作说明
 
