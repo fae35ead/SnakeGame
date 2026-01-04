@@ -1,0 +1,14 @@
+# 忽略 Visual Studio 临时文件
+.vs/
+x64/
+Debug/
+Release/
+*.obj
+*.pdb
+*.user
+*.suo
+*.sdf
+*.opensdf
+
+# 忽略游戏生成的存档文件（不要把你的存档上传上去）
+*.dat
